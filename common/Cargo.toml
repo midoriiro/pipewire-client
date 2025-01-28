@@ -1,0 +1,13 @@
+[package]
+name = "pipewire-common"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "PipeWire Common"
+repository.workspace = true
+documentation = ""
+keywords = ["pipewire", "common"]
+
+[dependencies]
+pipewire = "0.8"

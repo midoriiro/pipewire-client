@@ -1,0 +1,32 @@
+[package]
+name = "pipewire-spa-utils"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "PipeWire SPA Utils"
+repository.workspace = true
+documentation = ""
+keywords = ["pipewire", "spa", "utils"]
+build = "build.rs"
+
+[build-dependencies]
+cargo = "0.84"
+cargo_metadata = "0.19"
+libspa = "0.8"
+syn = "2.0"
+quote = "1.0"
+prettyplease = "0.2"
+itertools = "0.14"
+indexmap = "2.7"
+
+[dependencies]
+libspa = { version = "0.8" }
+
+[features]
+v0_3_33 = []
+v0_3_40 = ["v0_3_33", "libspa/v0_3_33"]
+v0_3_65 = ["v0_3_40", "libspa/v0_3_65"]
+v0_3_75 = ["v0_3_65", "libspa/v0_3_75"]
+
+

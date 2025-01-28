@@ -1,0 +1,20 @@
+[workspace]
+resolver = "2"
+members = [
+    "client",
+    "common",
+    "spa-utils",
+    "test-utils",
+]
+
+[workspace.package]
+name = "pipewire-client"
+edition = "2021"
+authors = ["Alexis Bekhdadi <alexis@bekhdadi.com>"]
+license = "Apache-2.0"
+description = "PipeWire Client"
+repository = "https://github.com/midoriiro/pipewire-client"
+documentation = ""
+keywords = ["pipewire", "client"]
+rust-version = "1.80.0"
+version = "0.8.0"
