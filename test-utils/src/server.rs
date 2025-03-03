@@ -1,4 +1,4 @@
-use crate::containers::container::{ContainerApi, ImageApi, CONTAINER_PATH, CONTAINER_TMP_PATH};
+use crate::containers::container::{CONTAINER_PATH, CONTAINER_TMP_PATH};
 use crate::containers::options::{CreateContainerOptionsBuilder, StopContainerOptionsBuilder};
 use crate::environment::{Environment, TestTarget, TEST_ENVIRONMENT};
 use bytes::Bytes;
@@ -16,6 +16,8 @@ use bollard::container::RemoveContainerOptions;
 use tar::{Builder, EntryType, Header};
 use tokio::runtime::Runtime;
 use uuid::Uuid;
+use crate::containers::container_api::ContainerApi;
+use crate::containers::image_api::ImageApi;
 
 static CONTAINER_FILE_PATH: LazyLock<PathBuf> = LazyLock::new(|| {
     CONTAINER_PATH

@@ -1,6 +1,16 @@
+# rust
 target/
 Cargo.lock
 .cargo/
 .DS_Store
 recorded.wav
 rls*.log
+
+# yarn
+.yarn/
+.yarnrc.yml
+yarn.lock
+node_modules/
+
+# openapi-generator
+generated/

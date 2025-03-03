@@ -5,13 +5,6 @@ use std::io::{BufReader, Read};
 use std::path::PathBuf;
 use std::process::{Command, Stdio};
 
-#[macro_export]
-macro_rules! debug {
-    ($($tokens: tt)*) => {
-        println!("cargo:warning={}", format!($($tokens)*))
-    }
-}
-
 pub struct PackageInfo {
     pub src_path: PathBuf,
     pub build_path: PathBuf,

@@ -1,78 +1,8 @@
 use bollard::container::{Config, StopContainerOptions};
-use bollard::models::{HealthConfig, HostConfig, Mount, MountBindOptions, MountTypeEnum, ResourcesUlimits};
+use bollard::models::{HealthConfig, HostConfig};
+use pipewire_common::utils::Size;
 use std::collections::HashMap;
 use std::time::Duration;
-
-#[derive(Debug, Clone, Copy, PartialEq)]
-pub enum Unit {
-    Bytes,
-    KB,
-    MB,
-    GB,
-}
-
-#[derive(Debug, Clone, Copy, PartialEq)]
-pub struct Size {
-    value: f64,
-    unit: Unit,
-}
-
-impl Size {
-    const fn new(value: f64, unit: Unit) -> Self {
-        Self { value, unit }
-    }
-
-    pub const fn from_bytes(bytes: f64) -> Self {
-        Self::new(bytes, Unit::Bytes)
-    }
-
-    pub const fn from_kb(kb: f64) -> Self {
-        Self::new(kb, Unit::KB)
-    }
-
-    pub const fn from_mb(mb: f64) -> Self {
-        Self::new(mb, Unit::MB)
-    }
-
-    pub const fn from_gb(gb: f64) -> Self {
-        Self::new(gb, Unit::GB)
-    }
-}
-
-impl From<String> for Size {
-    fn from(value: String) -> Self {
-        let value = value.trim();
-        let unit = value.chars().last().unwrap();
-        let unit = match unit {
-            'b' => Unit::Bytes,
-            'k' => Unit::KB,
-            'm' => Unit::MB,
-            'g' => Unit::GB,
-            _ => panic!("Invalid unit {:?}. Only b, k, m, g are supported.", unit),
-        };
-        let value = value.chars().take(value.len() - 2).collect::<String>();
-        let value = value.parse::<f64>().unwrap();
-        Self::new(value, unit)
-    }
-}
-
-impl From<Size> for u64 {
-    fn from(value: Size) -> Self {
-        match value.unit {
-            Unit::Bytes => value.value as u64,
-            Unit::KB => (value.value * 1024.0) as u64,
-            Unit::MB => (value.value * 1024.0 * 1024.0) as u64,
-            Unit::GB => (value.value * 1024.0 * 1024.0 * 1024.0) as u64,
-        }
-    }
-}
-
-impl From<Size> for i64 {
-    fn from(value: Size) -> Self {
-        let value: u64 = value.into();
-        value as i64
-    }
-}
 
 pub struct CreateContainerOptionsBuilder {
     image: Option<String>,

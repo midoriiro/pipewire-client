@@ -17,4 +17,4 @@ repository = "https://github.com/midoriiro/pipewire-client"
 documentation = ""
 keywords = ["pipewire", "client"]
 rust-version = "1.80.0"
-version = "0.8.0"
+version = "0.1.0"
